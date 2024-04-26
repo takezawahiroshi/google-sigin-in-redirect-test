@@ -8,7 +8,7 @@
     <script>
         function handleCredentialResponse(response) {
             console.log("Credentials received:", response);
-            alert(response);
+            alert("認証成功");
         }
 
         function initializeGSI() {
@@ -21,6 +21,8 @@
 </head>
 <body onload="initializeGSI()">
     <h1>Google Login Test</h1>
+    <p>PopupのCloseボタンを押すと、Popupが出なくなる仕様</p>
+    <p>Browseing historyをクリアすると再びpopupが表示される</p>
     <button onclick="window.google.accounts.id.prompt()">Sign In with Google</button>
 </body>
 </html>
