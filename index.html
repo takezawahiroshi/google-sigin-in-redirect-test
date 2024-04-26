@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Redirect Test</title>
     <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+    <!-- 古いGoogle Sign-Inライブラリの読み込みをコメントアウト -->
     <script src="https://accounts.google.com/gsi/fed.js" async defer></script>
+    <!-- 新しいFedCMライブラリの読み込み -->
     <script>
         function handleCredentialResponse(response) {
             console.log("Credentials received:", response);
@@ -19,8 +21,8 @@
             //     ux_mode: "redirect",
             //     redirect_uri: "https://takezawahiroshi.github.io/google-sigin-in-redirect-test/"
             // });
-            window.google.accounts.fed.initalize({
-                client_id: "YOUR_CLIENT_ID",
+            window.google.accounts.fed.initialize({ // "initialize"のスペルが誤っています
+                client_id: "195162718233-entgmm9ufp81uc73ctp32urhdc8md13e.apps.googleusercontent.com",
                 callback: handleCredentialResponse,
                 ux_mode: "redirect",
                 redirect_uri: "https://takezawahiroshi.github.io/google-sigin-in-redirect-test/"
@@ -28,7 +30,8 @@
         }
 
         function promptSignIn() {
-            window.google.accounts.id.prompt((notification) => {
+            // window.google.accounts.id.prompt((notification) => {
+            window.google.accounts.fed.prompt((notification) => { // "prompt"のスペルが誤っています
                 console.log("Notification received:", notification);
                 if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
                     console.log("Prompt not displayed or skipped:", notification.getNotDisplayedReason());
