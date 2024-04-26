@@ -8,7 +8,7 @@
     <script>
         function handleCredentialResponse(response) {
             console.log("Credentials received:", response);
-            alert("Check console for the ID token.");
+            alert(response);
         }
 
         function initializeGSI() {
@@ -22,6 +22,5 @@
 <body onload="initializeGSI()">
     <h1>Google Login Test</h1>
     <button onclick="window.google.accounts.id.prompt()">Sign In with Google</button>
-    <p>Check the console for log output.</p>
 </body>
 </html>
