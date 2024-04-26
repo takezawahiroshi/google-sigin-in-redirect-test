@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Redirect Test</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            console.log("Credentials received:", response);
+            alert("Check console for the ID token.");
+        }
+
+        function initializeGSI() {
+            window.google.accounts.id.initialize({
+                client_id: "YOUR_CLIENT_ID",
+                callback: handleCredentialResponse,
+                ux_mode: "redirect",
+                redirect_uri: "https://YOUR_GITHUB_USERNAME.github.io/google-redirect-test/"
+            });
+
+            window.google.accounts.id.prompt();
+        }
+    </script>
+</head>
+<body onload="initializeGSI()">
+    <h1>Google Redirect Test</h1>
+    <p>Check the console for log output.</p>
+</body>
+</html>
