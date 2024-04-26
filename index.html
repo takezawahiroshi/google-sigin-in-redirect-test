@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Redirect Test</title>
-    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
         function handleCredentialResponse(response) {
             console.log("Credentials received:", response);
@@ -18,13 +18,21 @@
                 ux_mode: "redirect",
                 redirect_uri: "https://takezawahiroshi.github.io/google-sigin-in-redirect-test/"
             });
+        }
 
-            window.google.accounts.id.prompt();
+        function promptSignIn() {
+            window.google.accounts.id.prompt((notification) => {
+                console.log("Notification received:", notification);
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                    console.log("Prompt not displayed or skipped:", notification.getNotDisplayedReason());
+                }
+            });
         }
     </script>
 </head>
 <body onload="initializeGSI()">
     <h1>Google Redirect Test</h1>
+    <button onclick="promptSignIn()">Sign In with Google</button>
     <p>Check the console for log output.</p>
 </body>
 </html>
