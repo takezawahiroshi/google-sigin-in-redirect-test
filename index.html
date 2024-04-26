@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Redirect Test</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+    <script src="https://accounts.google.com/gsi/fed.js" async defer></script>
     <script>
         function handleCredentialResponse(response) {
             console.log("Credentials received:", response);
@@ -12,8 +13,14 @@
         }
 
         function initializeGSI() {
-            window.google.accounts.id.initialize({
-                client_id: "195162718233-entgmm9ufp81uc73ctp32urhdc8md13e.apps.googleusercontent.com",
+            // window.google.accounts.id.initialize({
+            //     client_id: "195162718233-entgmm9ufp81uc73ctp32urhdc8md13e.apps.googleusercontent.com",
+            //     callback: handleCredentialResponse,
+            //     ux_mode: "redirect",
+            //     redirect_uri: "https://takezawahiroshi.github.io/google-sigin-in-redirect-test/"
+            // });
+            window.google.accounts.fed.initalize({
+                client_id: "YOUR_CLIENT_ID",
                 callback: handleCredentialResponse,
                 ux_mode: "redirect",
                 redirect_uri: "https://takezawahiroshi.github.io/google-sigin-in-redirect-test/"
